@@ -1,7 +1,10 @@
-#VRML_SIM R2020a utf8
+#VRML_SIM R2023b utf8
 # license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
 # license url: https://cyberbotics.com/webots_assets_license
 # omnidirectionnal wheels with 2D coulomb friction
+
+EXTERNPROTO "InteriorWheel.proto"
+EXTERNPROTO "ExteriorWheel.proto"
 
 PROTO GoBildaStrafer [
   field SFVec3f    translation     0 0.105 0      # Is `Transform.translation`.
@@ -43,14 +46,14 @@ PROTO GoBildaStrafer [
 	
 	
 	Solid {
-	  translation 0 -0.055 -0.193
+	  translation 0.192 0 -0.055
 	  children [
 		DEF LEFT_RAIL_WHEELS Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.2 0.048 0.048
+			size 0.048 0.2 0.048
 		  }
 		}
 	  ]
@@ -64,14 +67,14 @@ PROTO GoBildaStrafer [
 	
 	
 	Solid {
-	  translation 0 -0.055 0.193
+	  translation -0.192 0 -0.055
 	  children [
 		DEF RIGHT_RAIL_WHEELS Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.2 0.048 0.048
+			size 0.048 0.2 0.048
 		  }
 		}
 	  ]
@@ -84,14 +87,14 @@ PROTO GoBildaStrafer [
 	}
 	
 	Solid {
-	  translation 0 -0.055 -0.144
+	  translation 0.144 0 -0.055
 	  children [
 		DEF LEFT_RAIL Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.432 0.048 0.048
+			size 0.048 0.432 0.048
 		  }
 		}
 	  ]
@@ -103,14 +106,14 @@ PROTO GoBildaStrafer [
       }
 	}
 	Solid {
-	  translation -0.192 -0.055 0
+	  translation 0 0.192 -0.055
 	  children [
 		DEF BACK_RAIL Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.048 0.048 0.24
+			size 0.24 0.048 0.048
 		  }
 		}
 	  ]
@@ -123,14 +126,14 @@ PROTO GoBildaStrafer [
 	}
 	
 	Solid {
-	  translation -0.002 -0.055 0
+	  translation 0 0.002 -0.055
 	  children [
 		DEF FRONT_RAIL Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.048 0.048 0.24
+			size 0.24 0.048 0.048
 		  }
 		}
 	  ]
@@ -142,14 +145,14 @@ PROTO GoBildaStrafer [
       }
 	}
 	Solid {
-	  translation 0 -0.055 0.144
+	  translation -0.144 0 -0.055
 	  children [
 		DEF RIGHT_RAIL Shape {
 		  appearance PBRAppearance {
 			metalness 0.5
 		  }
 		  geometry Box {
-			size 0.432 0.048 0.048
+			size 0.048 0.432 0.048
 		  }
 		}
 	  ]
@@ -162,29 +165,29 @@ PROTO GoBildaStrafer [
 	}
 	
 	Transform  {
-		rotation -1 0 0 1.57079632679
+		rotation 0 1 0 1.5707963267948966
 		children [
 			DEF FRONT_RIGHT_WHEEL InteriorWheel {
-			  translation 0.168 -0.205 -0.055 
-			  anchor 0.168 -0.205 -0.055
+			  translation 0.055 -0.168 -0.205
+			  anchor 0.055 -0.168 -0.205
 			  name "frontRightWheel"
 			  sensorName "frontRightWheelSensor"
 			}
 			DEF FRONT_LEFT_WHEEL ExteriorWheel {
-			  translation 0.168 0.205 -0.055	 
-			  anchor 0.168 0.205 -0.055
+			  translation 0.055 -0.168 0.205
+			  anchor 0.055 -0.168 0.205
 			  name "frontLeftWheel"
 			  sensorName "frontLeftWheelSensor"
 			}
 			DEF BACK_RIGHT_WHEEL ExteriorWheel {
-			  translation -0.168 -0.205 -0.055 
-			  anchor -0.168 -0.205 -0.055
+			  translation 0.055 0.168 -0.205
+			  anchor 0.055 0.168 -0.205
 			  name "backRightWheel"
 			  sensorName "backRightWheelSensor"
 			}
 			DEF BACK_LEFT_WHEEL InteriorWheel {
-			  translation -0.168 0.205 -0.055 
-			  anchor -0.168 0.205 -0.055
+			  translation 0.055 0.168 0.205
+			  anchor 0.055 0.168 0.205
 			  name "backLeftWheel"
 			  sensorName "backLeftWheelSensor"
 			}
@@ -198,7 +201,7 @@ PROTO GoBildaStrafer [
       0 0 0
     ]
     inertiaMatrix [
-      0.166204 0.418086 0.55459
+      0.55459 0.166204 0.418086
       0 0 0
     ]
   }

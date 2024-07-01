@@ -1,8 +1,11 @@
-#VRML_SIM R2020a utf8
+#VRML_SIM R2023b utf8
 # license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
 # license url: https://cyberbotics.com/webots_assets_license
 # tags: hidden
 # omnidirectionnal wheel with 2D coulomb friction
+
+EXTERNPROTO "WheelMesh.proto"
+EXTERNPROTO "SubWheelMesh.proto"
 
 PROTO ExteriorWheel [
   field SFVec3f translation 0 0 0
@@ -22,7 +25,7 @@ PROTO ExteriorWheel [
       }
     ]
     jointParameters HingeJointParameters {
-      axis 0 1 0
+      axis 0 0 1
       anchor IS anchor
     }
     endPoint DEF WHEEL_SOLID Solid {
@@ -31,48 +34,48 @@ PROTO ExteriorWheel [
         WheelMesh {
         }
         Transform {
-          translation 0 0 0.036
-          rotation 0 0 -1 0.785402
+          translation -0.036 0 0
+          rotation 1 0 0 0.785402
           children [
             SubWheelMesh {
             }
           ]
         }
         Transform {
-          translation 0.0311 0 0.018
-          rotation -0.318977 0.770074 -0.552484 1.28666
+          translation -0.018 -0.0311 0
+          rotation 0.552484 0.318977 0.770074 1.28666
           children [
             SubWheelMesh {
             }
           ]
         }
         Transform {
-          translation 0.0311 0 -0.018
-          rotation -0.373673 0.902122 -0.21574 2.18123
+          translation 0.018 -0.0311 0
+          rotation 0.21574 0.373673 0.902122 2.18123
           children [
             SubWheelMesh {
             }
           ]
         }
         Transform {
-          translation 0 0 -0.036
-          rotation -0.382685 0.923879 0 3.14159
+          translation 0.036 0 0
+          rotation 0 0.382685 0.923879 3.14159
           children [
             SubWheelMesh {
             }
           ]
         }
         Transform {
-          translation -0.0311 0 -0.018
-          rotation -0.373673 0.902122 0.21574 4.10195
+          translation 0.018 0.0311 0
+          rotation -0.21574 0.373673 0.902122 4.10195
           children [
             SubWheelMesh {
             }
           ]
         }
         Transform {
-          translation -0.0311 0 0.018
-          rotation -0.318977 0.770074 0.552484 4.99652
+          translation -0.018 0.0311 0
+          rotation -0.552484 0.318977 0.770074 4.99652
           children [
             SubWheelMesh {
             }

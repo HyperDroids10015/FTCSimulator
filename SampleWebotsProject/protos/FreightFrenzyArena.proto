@@ -1,3 +1,9 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "TapeBox.proto"
 
 PROTO FreightFrenzyArena [
 ]
@@ -5,7 +11,7 @@ PROTO FreightFrenzyArena [
 	 Group {
         children [
 			RectangleArena {
-			  translation 1.8288 0 -1.8288
+			  translation 1.8288 -1.8288 0
 			  floorSize 3.6576 3.6576
 			  floorTileSize 1.2192 1.2192
 			  wallThickness 1e-09
@@ -13,8 +19,7 @@ PROTO FreightFrenzyArena [
 			}
 			
 			TapeBox{
-			
-			  translation 0.635 0 0
+			  translation 0 -0.635 0
 			  name "BlueStorageUnit"
 			  color 0 0 1
 			}
@@ -22,8 +27,7 @@ PROTO FreightFrenzyArena [
 
 			
 			TapeBox{
-			
-			  translation 2.4638 0 0
+			  translation 0 -2.4638 0
 			  name "RedStorageUnit"
 			  color 1 0 0
 			}

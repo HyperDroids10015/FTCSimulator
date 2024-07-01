@@ -1,8 +1,11 @@
-#VRML_SIM R2020a utf8
+#VRML_SIM R2023b utf8
 # license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
 # license url: https://cyberbotics.com/webots_assets_license
 # tags: hidden
 # subwheel of the omnidirectionnal wheel
+
+EXTERNPROTO "WheelMesh.proto"
+EXTERNPROTO "SubWheelMesh.proto"
 
 PROTO SubWheel [
   field SFString name "youBot subwheel"
@@ -10,7 +13,7 @@ PROTO SubWheel [
 {
   HingeJoint {
     jointParameters HingeJointParameters {
-      axis 0 1 0
+      axis 0 0 1
       dampingConstant 0.000005
     }
     endPoint Solid {

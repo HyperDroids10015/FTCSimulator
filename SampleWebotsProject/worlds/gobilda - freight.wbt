@@ -1,7 +1,12 @@
-#VRML_SIM R2021b utf8
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "../protos/GoBildaStrafer.proto"
+EXTERNPROTO "../protos/FreightFrenzyArena.proto"
+
 WorldInfo {
   basicTimeStep 8
-  coordinateSystem "NUE"
   contactProperties [
     ContactProperties {
       material1 "InteriorWheelMat"
@@ -28,21 +33,20 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 1 0 0 4.71238898038469
-  position 1.3442627385608057 7.103334746679889 -1.0393853674864675
+  orientation 0 1 0 1.5707963267948966
+  position 1.8288 -1.8288 9
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 GoBildaStrafer {
-  translation 1.403 0.105 -0.251
+  translation 0.251 -1.403 0.105
   useRotationCorrection FALSE
   rotationPID_P 0.2
   rotationPID_D 0.01
-  rotation 0 1 0 1.57079
+  rotation 0 0 1 1.5707963267948966
   controller "FTCController"
 }
-
 FreightFrenzyArena {
 }
