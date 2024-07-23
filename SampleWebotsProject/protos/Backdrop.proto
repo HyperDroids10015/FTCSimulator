@@ -1,0 +1,32 @@
+#VRML_SIM R2023b utf8
+# Describe the functionality of your PROTO here.
+
+
+PROTO Backdrop [
+  field SFVec3f translation 0 0 0
+  field SFString name "Backdrop"
+]
+{
+  Solid {
+    translation IS translation
+    rotation -1 0 0 0.5235996938995747
+    name IS name
+    children [
+      DEF BACKDROP Shape {
+        appearance PBRAppearance {
+          baseColor 0.501961 0.501961 0.501961
+          roughness 1
+          metalness 0
+        }
+        geometry Mesh {
+          url [
+            "am-5117 Backdrop.stl"
+          ]
+        }
+      }
+    ]
+    contactMaterial "backdrop"
+    boundingObject USE BACKDROP
+    locked TRUE
+    }
+}

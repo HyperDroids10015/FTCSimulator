@@ -1,0 +1,42 @@
+#VRML_SIM R2023b utf8
+# Describe the functionality of your PROTO here.
+
+
+PROTO Pixel [
+  field SFVec3f translation 0 0 0
+  field SFRotation rotation 0 0 1 0
+  field SFString name "Pixel"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      DEF PIXEL Shape {
+        appearance PBRAppearance {
+          roughness 1
+          metalness 0
+        }
+        geometry Mesh {
+          url [
+            "am-5101 Molded Hex.stl"
+          ]
+        }
+      }
+    ]
+    contactMaterial "pixel"
+    boundingObject USE PIXEL
+    physics Physics {
+      density -1
+      mass 0.1
+      centerOfMass [
+        0 0 0
+      ]
+      inertiaMatrix [
+        1 1 1
+        0 0 0
+      ]
+    }
+  }
+  }

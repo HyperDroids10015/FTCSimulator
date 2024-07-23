@@ -1,0 +1,64 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "../protos/CenterStageArena.proto"
+EXTERNPROTO "../protos/GoBildaRi3D_2023.proto"
+
+WorldInfo {
+  basicTimeStep 8
+  contactProperties [
+    ContactProperties {
+      material1 "InteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation -0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+    }
+    ContactProperties {
+      material1 "ExteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation 0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+    }
+    ContactProperties {
+      material1 "pixel"
+      coulombFriction [
+        0.2
+      ]
+      bounce 0
+    }
+    ContactProperties {
+      material1 "pixel"
+      material2 "backdrop"
+      coulombFriction [
+        0.1
+      ]
+      bounce 0
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.22961716588865883 0.14812327228468594 0.9619435811610456 2.4635124783358453
+  position 6.794873793000396 -4.582244560990475 4.076632732862613
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CenterStageArena {
+}
+GoBildaRi3D_2023 {
+  translation 1.612 0.3 0.072
+  rotation 0 0 1 3.141592653589793
+  controller "FTCController"
+}

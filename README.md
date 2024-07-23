@@ -52,6 +52,6 @@ You can find more information about getting started with Webots [here](https://d
 
 You can find more information about getting started with Android Studio [here](https://docs.ftcsimulator.com/getting-started/getting-started-with-android-studio).
 
-## Freight Frenzy World
+## CENTERSTAGE World
 
-![Screenshot](https://user-images.githubusercontent.com/55167736/153104696-272da409-3e2f-4e09-9f2d-b9f2734805db.png)
+![Screenshot](https://raw.githubusercontent.com/HyperDroids10015/FTCSimulator/main/SampleWebotsProject/worlds/.centerstage.jpg)

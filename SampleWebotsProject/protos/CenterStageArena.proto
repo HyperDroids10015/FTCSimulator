@@ -1,0 +1,358 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/HyperDroids10015/FTCSimulator/main/WebotsProjects/CENTERSTAGE/protos/GoBildaRi3D_2023.proto
+# keywords: robot/wheeled
+# This is the arena for the FTC CENTERSTAGE season
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "Backdrop.proto"
+EXTERNPROTO "Pixel.proto"
+
+PROTO CenterStageArena [
+]
+{
+  Group {
+    children [
+      RectangleArena {
+        floorSize 3.584 3.584
+        floorTileSize 3.584 3.584
+        floorAppearance PBRAppearance {
+          baseColor 0.776471 0.776471 0.776471
+          baseColorMap ImageTexture {
+            url [
+              "field.png"
+            ]
+            repeatS FALSE
+            repeatT FALSE
+          }
+          roughness 1
+          metalness 0
+        }
+        wallThickness 0.0267
+        wallHeight 0.3
+        wallAppearance PBRAppearance {
+          transparency 0.9
+          roughness 1
+          metalness 0
+        }
+      }
+      Backdrop {
+        translation -0.9 1.535 0
+        name "Blue Backdrop"
+      }
+      Backdrop {
+        translation 0.9 1.535 0
+        name "Red Backdrop"
+      }
+      DEF Truss Group {
+        children [
+          Solid {
+            translation -0.6 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              DEF TRUSS Shape {
+                appearance PBRAppearance {
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.0254 0.0254 0.6096
+                }
+              }
+            ]
+            name "Truss Leg 1"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -0.6 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 2"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -1.2 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 3"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -1.2 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 4"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -1.7793 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 5"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -1.7793 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 6"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 0.6 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 7"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 0.6 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 8"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 1.2 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 9"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 1.2 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 10"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 1.7793 -0.0925 0.287468
+            rotation 1 0 0 0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 11"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation 1.7793 -0.510293 0.287468
+            rotation 1 0 0 -0.436332313
+            children [
+              USE TRUSS
+            ]
+            name "Truss Leg 12"
+            boundingObject USE TRUSS
+            locked TRUE
+          }
+          Solid {
+            translation -0.9 -0.269646 0.575205
+            rotation 0 1 0 1.5707963267948966
+            children [
+              DEF BLUEBAR Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 1
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.6223
+                  radius 0.016675
+                }
+              }
+            ]
+            name "Blue Hanging Bar 1"
+            boundingObject USE BLUEBAR
+            locked TRUE
+          }
+          Solid {
+            translation -1.5 -0.333146 0.575205
+            rotation 0 1 0 1.5707963267948966
+            children [
+              USE BLUEBAR
+            ]
+            name "Blue Hanging Bar 2"
+            boundingObject USE BLUEBAR
+            locked TRUE
+          }
+          Solid {
+            translation 0.9 -0.269646 0.575205
+            rotation 0 1 0 1.5707963267948966
+            children [
+              DEF REDBAR Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.6223
+                  radius 0.016675
+                }
+              }
+            ]
+            name "Red Hanging Bar 1"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+          Solid {
+            translation 1.5 -0.333146 0.575205
+            rotation 0 1 0 1.5707963267948966
+            children [
+              USE REDBAR
+            ]
+            name "Red Hanging Bar 2"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+          Solid {
+            translation -0.9 -0.502551 0.368935
+            rotation 0 1 0 1.5707963267948966
+            children [
+              DEF YELLOWBAR Shape {
+                appearance PBRAppearance {
+                  baseColor 1 1 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.6223
+                  radius 0.013335
+                }
+              }
+            ]
+            name "Height Limiter 1"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+          Solid {
+            translation -1.5 -0.100266 0.368935
+            rotation 0 1 0 1.5707963267948966
+            children [
+              USE YELLOWBAR
+            ]
+            name "Height Limiter 2"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+          Solid {
+            translation 0.9 -0.502551 0.368935
+            rotation 0 1 0 1.5707963267948966
+            children [
+              USE YELLOWBAR
+            ]
+            name "Height Limiter 3"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+          Solid {
+            translation 1.5 -0.100266 0.368935
+            rotation 0 1 0 1.5707963267948966
+            children [
+              USE YELLOWBAR
+            ]
+            name "Height Limiter 4"
+            boundingObject USE REDBAR
+            locked TRUE
+          }
+        ]
+      }
+      Solid {
+        translation 0 -0.269646 0.575205
+        rotation 0 1 0 1.5707963267948966
+        children [
+          DEF YELLOWLONGBAR Shape {
+            appearance PBRAppearance {
+              baseColor 1 1 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 1.2446
+              radius 0.013335
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.001
+              axis 0 0 1
+              minStop 0.001
+              maxStop 1.0
+            }
+            endPoint Solid {
+              translation 0.24549013589613808 0.18609682073236955 0
+              rotation 0 0 -1 7.300048299977754e-07
+              children [
+                USE YELLOWLONGBAR
+              ]
+              boundingObject USE YELLOWLONGBAR
+              physics Physics {
+                density -1
+                mass 1
+              }
+              linearVelocity -1.5443045386948602e-22 -1.4194692091763826e-15 -5.257937316024644e-16
+              angularVelocity 1.9979021962103406e-14 -1.5307573705893469e-15 2.6469869453196262e-21
+            }
+          }
+        ]
+        name "Stage Door"
+        locked TRUE
+      }
+      Pixel {
+        translation 0.2999997682603266 -1.753881326712138 0.006330226118843472
+        rotation 0.9999999999278395 -7.789033922678407e-06 9.14614298553088e-06 1.5708224424385022
+        name "White Pixel"
+      }
+      Pixel {
+        translation 0.29999700181930017 -1.7538803817062183 0.01901448079614922
+        rotation 0.9999999999877709 -4.189887908863366e-06 2.6273877262435272e-06 1.5708032921385118
+        name "White Pixel(1)"
+      }
+      Pixel {
+        translation 0.2999945199196729 -1.7538794414976768 0.031702539877217516
+        rotation 0.9999999999943582 -3.267216208379442e-06 7.803782143142469e-07 1.5707961366426417
+        name "White Pixel(2)"
+      }
+      Pixel {
+        translation 0.3000152778931017 -1.7538338477435838 0.044394454318543976
+        rotation 0.9999999999371794 5.181960268871649e-06 9.939247373116089e-06 1.570799587784364
+        name "White Pixel(3)"
+      }
+      Pixel {
+        translation 0.3000133234686719 -1.7538362147772943 0.057090605810377386
+        rotation 0.9999999999348909 1.3605392431144463e-06 1.1329911738587343e-05 1.570810610734684
+        name "White Pixel(4)"
+      }
+    ]
+  }
+}
