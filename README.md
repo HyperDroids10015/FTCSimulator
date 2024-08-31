@@ -16,14 +16,14 @@ This is a cross-platform simulator for First Tech Challenge robots created by Te
 
 ### Using the provided Webots world
 
-1. Download Webots from their [Github release](https://github.com/cyberbotics/webots/releases/tag/R2023b). The sample world we provide requires Webots 2023b or earlier and is not compatible with newer versions.
+1. Download Webots from their [Github release](https://github.com/cyberbotics/webots/releases/tag/R2023b). The sample world we provide requires Webots 2023b or newer and is not compatible with older versions.
 2. Rename `simulation.properties.example` to `simulation.properties` and edit the file to add the full path to your Android Studio project.
-3. Open Webots and then open the sample world located at `SampleWebotsProject/worlds/gobilda - freight.wbt`.
+3. Open Webots and then open the sample world located at `SampleWebotsProject/worlds/centerstage.wbt`.
 4. Profit.
 
 ### Using your own Webots world
 
-1. Download Webots from their [Github release](https://github.com/cyberbotics/webots/releases/tag/R2023b). The sample world we provide requires Webots 2023b or earlier and is not compatible with newer versions.
+1. Download Webots from their [Github release](https://github.com/cyberbotics/webots/releases/tag/R2023b). The sample world we provide requires Webots 2023b or newer and is not compatible with older versions.
 2. Download FTCController.jar and SimulatorSupport.jar from the [release](https://github.com/BlueJays6448/FTCSimulator/releases/tag/0.1).
 3. Download the sample webots project.
 4. Add the FTCController.jar to `SampleWebotsProject/controllers/FTCController`.
