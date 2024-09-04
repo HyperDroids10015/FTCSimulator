@@ -13,13 +13,13 @@ backRightWheel.maxPower=15
 
 
 #declare these so that the hardware map maps them as a Servo or CRServo
-duckServo.type=servo
-spoolServo.type=servousServo
+#duckServo.type=servo
+#spoolServo.type=servousServo
 
 
 #declare these so that No-Op implementations are created for them (they don't exist in the Webots world)
-leftIntake.type=motor
-rightIntake.type=motor
+#leftIntake.type=motor
+#rightIntake.type=motor
 
 
 #tell the simulator where your class files exist

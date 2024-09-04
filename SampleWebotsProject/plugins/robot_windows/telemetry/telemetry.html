@@ -1,20 +1,18 @@
 <html>
 
 <head>
-  <script>
-  
-  function receive(message) {
-	 document.getElementById('textDisplay').innerHTML = message;
-	}
-  
-    window.onload = () => {
-      // Initialize the robot window
-      const robotWindow = webots.window();
-      
-      // Receive messages from the controller and show them in the robot window
-      robotWindow.receive = receive;
+  <script type="module">
+  import RobotWindow from 'https://cyberbotics.com/wwi/R2023b/RobotWindow.js';
 
-    };
+  function receive(message, _robot) {
+    document.getElementById('textDisplay').innerHTML = message;
+  }
+
+  window.onload = function() {
+    window.robotWindow = new RobotWindow();
+    window.robotWindow.setTitle('Telemetry');
+    window.robotWindow.receive = receive;
+  };
   </script>
 </head>
 
