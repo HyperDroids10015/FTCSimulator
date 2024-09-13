@@ -6,6 +6,7 @@ EXTERNPROTO "../protos/CenterStageArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/kuka/youbot/protos/Youbot.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/microsoft/protos/Kinect.proto"
 EXTERNPROTO "../protos/GoBildaRi3D_2023.proto"
+EXTERNPROTO "../protos/Pixel.proto"
 
 WorldInfo {
   info [
@@ -54,8 +55,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.1421055952989009 0.06553501121168502 -0.9876796859762934 2.118054521866452
-  position -0.15484127716634394 1.7015187933941691 0.7765151367399629
+  orientation 0.18348017180027865 -0.039156937812098565 -0.9822432289292301 3.4310973348266733
+  position 1.3056258702443875 -0.3425408369215469 1.2096558883901336
   follow "youBot"
 }
 TexturedBackground {
@@ -65,11 +66,8 @@ TexturedBackgroundLight {
 CenterStageArena {
 }
 Youbot {
-  translation -1.512 0.3 0.102838
-  controller "Kuka"
-  controllerArgs [
-    "AUTO"
-  ]
+  translation -1.5 0.3 0.1
+  controller "FTCController"
   window "telemetry"
   bodySlot [
     Kinect {
@@ -94,4 +92,8 @@ GoBildaRi3D_2023 {
     Compass {
     }
   ]
+}
+Pixel {
+  translation -0.6 0.3 0.02
+  rotation 0 0.707104781184338 0.7071087811831002 -3.1415853071795863
 }

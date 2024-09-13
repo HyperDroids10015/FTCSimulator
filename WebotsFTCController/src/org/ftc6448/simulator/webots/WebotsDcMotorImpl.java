@@ -21,6 +21,7 @@ public class WebotsDcMotorImpl implements DcMotorEx{
 	float power;
 	Direction direction;
 	ZeroPowerBehavior zeroPowerMode;
+	private final static double TICKS_PER_RADIAN = 537.69 / (2 * Math.PI); // for 312 rpm gobilda motor
 	
 	//extra power that can be used to add drag on a motor to simulate uneven power
 	float extraPower;
@@ -168,8 +169,7 @@ public class WebotsDcMotorImpl implements DcMotorEx{
 
 	@Override
 	public void setTargetPosition(int position) {
-		// TODO Auto-generated method stub
-		
+		motor.setPosition(position/TICKS_PER_RADIAN);
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class WebotsDcMotorImpl implements DcMotorEx{
 			return 0;
 		}
 		//need a mapping probably
-		return (int)sensor.getValue();
+		return (int)(sensor.getValue()*TICKS_PER_RADIAN);
 	}
 
 	@Override
@@ -227,20 +227,17 @@ public class WebotsDcMotorImpl implements DcMotorEx{
 
 	@Override
 	public void setVelocity(double angularRate) {
-		// TODO Auto-generated method stub
-		
+		motor.setVelocity(angularRate/TICKS_PER_RADIAN);
 	}
 
 	@Override
 	public void setVelocity(double angularRate, AngleUnit unit) {
-		// TODO Auto-generated method stub
-		
+		motor.setVelocity(unit.toRadians(angularRate));
 	}
 
 	@Override
 	public double getVelocity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return motor.getVelocity();
 	}
 
 	@Override

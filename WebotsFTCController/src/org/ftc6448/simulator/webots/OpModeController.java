@@ -7,6 +7,7 @@ import org.ftc6448.simulator.PlatformSupport;
 
 import com.cyberbotics.webots.controller.Device;
 import com.cyberbotics.webots.controller.GPS;
+import com.cyberbotics.webots.controller.Compass;
 import com.cyberbotics.webots.controller.InertialUnit;
 import com.cyberbotics.webots.controller.Keyboard;
 import com.cyberbotics.webots.controller.Motor;
@@ -64,7 +65,8 @@ public class OpModeController implements Controller {
 	private void initializeDevices() {
 		final HardwareMap hardwareMap=new HardwareMap();
 		opMode.hardwareMap=hardwareMap;
-		
+		GPS gps = null;
+		Compass compass = null;
 		
 		//load all motors into the hardware motor map
 		for (int i=0;i<supervisor.getNumberOfDevices();i++) {
@@ -72,7 +74,41 @@ public class OpModeController implements Controller {
 			
 			System.out.println(device+" "+i);
 			
-			if (device instanceof InertialUnit) {
+			if (device instanceof GPS) {
+				//SparkFun Qwiic Optical Tracking Odometry Sensor (OTOS)
+				gps=(GPS)device;
+				gps.enable(timeStep);
+
+				if (compass!=null) {
+					String mappedName=properties.getProperty(device.getName());
+					if (mappedName!=null) {
+						System.out.println("Loading webots GPS and Compass devices (" + gps.getName() + " and " + compass.getName()+") as "+mappedName);
+					}
+					else {
+						mappedName=device.getName();
+						System.out.println("Loading webots GPS and Compass devices (" + gps.getName() + " and " + compass.getName()+")");
+					}
+					hardwareMap.put(mappedName, new WebotsSparkFunOTOS(mappedName,gps,compass));
+				}
+			}
+			else if (device instanceof Compass) {
+				//SparkFun Qwiic Optical Tracking Odometry Sensor (OTOS)
+				compass=(Compass)device;
+                                compass.enable(timeStep);
+
+				if (gps!=null) {
+					String mappedName=properties.getProperty(device.getName());
+					if (mappedName!=null) {
+						System.out.println("Loading webots GPS and Compass devices (" + gps.getName() + " and " + compass.getName()+") as "+mappedName);
+					}
+					else {
+						mappedName=device.getName();
+						System.out.println("Loading webots GPS and Compass devices (" + gps.getName() + " and " + compass.getName()+")");
+					}
+					hardwareMap.put(mappedName, new WebotsSparkFunOTOS(mappedName,gps,compass));
+				}
+			}
+			else if (device instanceof InertialUnit) {
 				//only one imu is supported
 				System.out.println(device+" is IMU");
 				InertialUnit imu=(InertialUnit)device;
@@ -176,6 +212,7 @@ public class OpModeController implements Controller {
 			
 			//Autonomous opmodes need special coordination between the OpMode loop and the simulator loop
 			System.out.println("Running LinearOpMode");
+			boolean useKeyboard="true".equalsIgnoreCase(properties.getProperty("emulateGamepadsWithKeyboard"));
 		
 
 			//if sleep time is 0, then we signal the simulator lock and wait to be signaled back
@@ -189,6 +226,7 @@ public class OpModeController implements Controller {
 			}
 			
 			while (supervisor.step(timeStep) != -1) {
+				handleGamepads(useKeyboard);
 				linearOpMode.loop();
 				linearOpMode.internalPostLoop();
 				
@@ -232,21 +270,77 @@ public class OpModeController implements Controller {
 			
 			//if we are using virtual gamepad, poll the keyboard
 			int key=keyboard.getKey();
+			int prevkey=0;
 			while (key!=-1) {
-				switch (key) {
-				case Keyboard.UP:
-					opMode.gamepad1.left_stick_y++;
-					break;
-				case Keyboard.DOWN:
-					opMode.gamepad1.left_stick_y--;
-					break;
-				case Keyboard.LEFT:
-					opMode.gamepad1.left_stick_x--;
-					break;
-				case Keyboard.RIGHT:
-					opMode.gamepad1.left_stick_x++;
-					break;
-				}
+				if ((key >= 0) && (key != prevkey))
+					switch (key) {
+					case Keyboard.UP:
+						opMode.gamepad1.left_stick_y += 0.2f;
+						if (opMode.gamepad1.left_stick_y > 1f)
+							opMode.gamepad1.left_stick_y = 1f;
+						break;
+					case Keyboard.DOWN:
+						opMode.gamepad1.left_stick_y -= 0.2f;
+						if (opMode.gamepad1.left_stick_y < -1f)
+							opMode.gamepad1.left_stick_y = -1f;
+						break;
+					case Keyboard.LEFT:
+						opMode.gamepad1.left_stick_x -= 0.2f;
+						if (opMode.gamepad1.left_stick_x > 1f)
+							opMode.gamepad1.left_stick_x = 1f;
+						break;
+					case Keyboard.RIGHT:
+						opMode.gamepad1.left_stick_x += 0.2f;
+						if (opMode.gamepad1.left_stick_x < -1f)
+							opMode.gamepad1.left_stick_x = -1f;
+						break;
+					case Keyboard.PAGEUP:
+						opMode.gamepad1.right_stick_x += 0.2f;
+						if (opMode.gamepad1.right_stick_x > 1f)
+							opMode.gamepad1.right_stick_x = 1f;
+						break;
+					case Keyboard.PAGEDOWN:
+						opMode.gamepad1.right_stick_x -= 0.2f;
+						if (opMode.gamepad1.right_stick_x < -1f)
+							opMode.gamepad1.right_stick_x = -1f;
+						break;
+					case Keyboard.END:
+					case ' ':
+						opMode.gamepad1.left_stick_x = 0f;
+						opMode.gamepad1.left_stick_y = 0f;
+						opMode.gamepad1.right_stick_x = 0f;
+						break;
+					case '+':
+					case 388:
+					case 65585:
+					case 65579:
+						opMode.gamepad1.left_bumper = true;
+						break;
+					case '-':
+					case 390:
+						opMode.gamepad1.right_bumper = true;
+						break;
+					case 332:
+					case Keyboard.UP | Keyboard.SHIFT:
+						opMode.gamepad1.y = true;
+						break;
+					case 326:
+					case Keyboard.DOWN | Keyboard.SHIFT:
+						opMode.gamepad1.a = true;
+						break;
+					case 330:
+					case Keyboard.RIGHT | Keyboard.SHIFT:
+						opMode.gamepad1.x = true;
+						break;
+					case 328:
+					case Keyboard.LEFT | Keyboard.SHIFT:
+						opMode.gamepad1.b = true;
+						break;
+					default:
+						System.out.printf("Wrong keyboard input: %d",key);
+						break;
+					}
+				prevkey=key;
 				key=keyboard.getKey();
 			}
 		}

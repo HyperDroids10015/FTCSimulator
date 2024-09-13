@@ -54,7 +54,7 @@ public class Kuka extends Robot {
      
   private void automaticBehavior() {
     int GOTO_SPM = 0;
-    double[][] goto_info = {{-0.989, 0.3, -Math.PI/2}};
+    double[][] goto_info = {{0.0, 1.2, 0.0}};
     highLevelGoTo(goto_info[GOTO_SPM][0], goto_info[GOTO_SPM][1], goto_info[GOTO_SPM][2]);
   }
 
@@ -184,7 +184,7 @@ public class Kuka extends Robot {
             arm.decreaseOrientation();
             break;
           default:
-            System.err.println("Wrong keyboard input");
+            System.err.printf("Wrong keyboard input: %d\n",c);
             break;
         }
       pc = c;

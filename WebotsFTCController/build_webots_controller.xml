@@ -6,7 +6,7 @@
     <property name="projectName" value="buildWebotsJar" />
     <property name="bin.dir" location="bin" />
     <property name="lib.dir" location="lib" />
-    <property name="dist.dir" location="controllers/FTCController" />
+    <property name="dist.dir" location="../SampleWebotsProject/controllers/FTCController" />
     <property name="jar" value="FTCController.jar" />
 
     <target name="init">
