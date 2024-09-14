@@ -1,5 +1,8 @@
 SampleWebotsProject/controllers/FTCController/simulation.properties
 
+# Webots project files
+*.wbproj
+
 # Compiled class file
 *.class
 
