@@ -92,9 +92,9 @@ public class GamepadSupport {
 		if (gamepad1Controller!=null) {
 			ControllerState currentState=controllerManager.getState(gamepad1Controller.getIndex());
 			gamepad1.left_stick_x=getAnalogValue(currentState.leftStickX);
-			gamepad1.left_stick_y=getAnalogValue(currentState.leftStickY);
+			gamepad1.left_stick_y=-getAnalogValue(currentState.leftStickY);
 			gamepad1.right_stick_x=getAnalogValue(currentState.rightStickX);
-			gamepad1.right_stick_y=getAnalogValue(currentState.rightStickY);
+			gamepad1.right_stick_y=-getAnalogValue(currentState.rightStickY);
 			
 			gamepad1.a=currentState.a;
 			gamepad1.b=currentState.b;
@@ -113,9 +113,9 @@ public class GamepadSupport {
 		if (gamepad2Controller!=null) {
 			ControllerState currentState=controllerManager.getState(gamepad2Controller.getIndex());
 			gamepad2.left_stick_x=getAnalogValue(currentState.leftStickX);
-			gamepad2.left_stick_y=getAnalogValue(currentState.leftStickY);
+			gamepad2.left_stick_y=-getAnalogValue(currentState.leftStickY);
 			gamepad2.right_stick_x=getAnalogValue(currentState.rightStickX);
-			gamepad2.right_stick_y=getAnalogValue(currentState.rightStickY);
+			gamepad2.right_stick_y=-getAnalogValue(currentState.rightStickY);
 			
 			gamepad2.a=currentState.a;
 			gamepad2.b=currentState.b;

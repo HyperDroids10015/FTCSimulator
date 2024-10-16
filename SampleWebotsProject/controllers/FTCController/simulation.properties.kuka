@@ -1,0 +1,51 @@
+#mapping of webots device names to our device names
+wheel1=frontRightMotor
+wheel2=frontLeftMotor
+wheel3=backRightMotor
+wheel4=backLeftMotor
+
+#max power values for each motor (in radians/second) should not exceed 'maxVelocity' property for corresponding HingeJoint
+wheel1.maxPower=14.8
+wheel2.maxPower=14.8
+wheel3.maxPower=14.8
+wheel4.maxPower=14.8
+arm1.maxPower=1.5708
+arm2.maxPower=1.5708
+arm3.maxPower=1.5708
+arm4.maxPower=1.5708
+arm5.maxPower=1.5708
+finger\:\:left.maxPower=1
+finger\:\:right.maxPower=1
+
+#declare these so that the hardware map maps them as a SparkFun Qwiic Optical Tracking Odometry Sensor (OTOS) that combines two sensors in one
+gps=sensor_otos
+compass=sensor_otos
+
+kinect\ color=Webcam\ 1
+#declare these so that the hardware map maps them as a Servo or CRServo
+#duckServo.type=servo
+#spoolServo.type=servousServo
+
+
+#declare these so that No-Op implementations are created for them (they don't exist in the Webots world)
+#leftIntake.type=motor
+#rightIntake.type=motor
+
+
+#tell the simulator where your class files exist
+#classpath.1=../../../SampleAndroidStudioProject/TeamCode/build/intermediates/javac/debug/classes
+classpath.1=C:/Users/ATAA/AndroidStudioProjects/10015robotcode2025/TeamCode/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes
+#classpath.2=C:/Users/ATAA/AndroidStudioProjects/10015robotcode2025/FtcRobotController/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes
+
+#tell it the opmode to load
+# working:
+opMode=org.firstinspires.ftc.teamcode.KukaAutonomous
+#opMode=org.firstinspires.ftc.teamcode.KukaTeleOp
+#opMode=org.firstinspires.ftc.teamcode.ConceptAprilTag
+#opMode=org.firstinspires.ftc.teamcode.ConceptAprilTagLocalization
+#opMode=org.firstinspires.ftc.teamcode.UtilityCameraFrameCapture
+#opMode=org.firstinspires.ftc.teamcode.ConceptVisionColorLocator
+#opMode=org.firstinspires.ftc.teamcode.ConceptVisionColorSensor
+
+#simulatorLoopSleepTime=100
+#emulateGamepadsWithKeyboard=true

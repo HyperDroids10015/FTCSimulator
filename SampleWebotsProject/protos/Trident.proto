@@ -1,0 +1,210 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# keywords: robot/wheeled
+# This is the Trident robot for the FTC INTO THE DEEP season by the FTC team 10015 Hyper Droids.
+# It consists of an omnidirectional platform, a linear stage robot arm and a two-finger gripper.
+# template language: javascript
+
+EXTERNPROTO "InteriorWheel.proto"
+EXTERNPROTO "ExteriorWheel.proto"
+EXTERNPROTO "Arducam.proto"
+EXTERNPROTO "SparkFunOTOS.proto"
+EXTERNPROTO "MetalAppearance.proto"
+
+PROTO Trident [
+  field SFVec3f           translation     0 0 0.072     # Is `Pose.translation`.
+  field SFRotation        rotation        0 0 1 0       # Is `Pose.rotation`.
+  field SFString          name            "Trident"     # Is `Solid.name`.
+  field SFString          controller      "<generic>"   # Is `Robot.controller`.
+  field MFString          controllerArgs  []            # Is `Robot.controllerArgs`.
+  field SFString          window          "intothedeep"   # Is `Robot.window`.
+  field SFString          customData      ""            # Is `Robot.customData`.
+  field SFBool            supervisor      FALSE         # Is `Robot.supervisor`.
+  field SFBool            synchronization TRUE          # Is `Robot.synchronization`.
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  customData IS customData
+  supervisor IS supervisor
+  synchronization IS synchronization
+  name IS name
+  model "TRIDENT INTO THE DEEP"
+  children [
+    Arducam {
+      translation 0.0746 0 0.045
+    }
+    SparkFunOTOS {
+      translation 0.0416 0 0.0225
+    }
+    DEF CHASSIS Solid {
+      children [
+        DEF LEFT_RAIL_EXTERIOR Pose {
+          translation 0 0.152763 0.044
+          children [
+            DEF PLATE_EXTERIOR Shape {
+              appearance MetalAppearance {
+              }
+              geometry Box {
+                size 0.354 0.003175 0.068
+              }
+            }
+          ]
+        }
+        DEF LEFT_RAIL_INTERIOR Pose {
+          translation 0 0.097588 0.044
+          children [
+            DEF PLATE_INTERIOR Shape {
+              appearance MetalAppearance {
+              }
+              geometry Box {
+                size 0.354 0.003175 0.068
+              }
+            }
+          ]
+        }
+        DEF RIGHT_RAIL_EXTERIOR Pose {
+          translation 0 -0.152763 0.044
+          children [
+            USE PLATE_EXTERIOR
+          ]
+        }
+        DEF RIGHT_RAIL_INTERIOR Pose {
+          translation 0 -0.0975875 0.044
+          children [
+            USE PLATE_INTERIOR
+          ]
+        }
+        DEF CROSSBAR Pose {
+          translation 0.0416 0 0.045
+          children [
+            DEF _1120-0007-0192 Shape {
+              appearance MetalAppearance {
+              }
+              geometry Box {
+                size 0.048 0.192 0.048
+              }
+            }
+          ]
+         }
+         DEF CROSSBAR1 Pose {
+          translation -0.07875 0 0.045
+          children [
+            DEF _1121-0007-0192 Shape {
+              appearance MetalAppearance {
+              }
+              geometry Box {
+                size 0.012 0.192 0.048
+              }
+            }
+          ]
+         }
+      ]
+    }
+    DEF FRONT_RIGHT_MOTOR Solid {
+      translation -0.007136 -0.0794 0.03275
+      rotation 1 0 0 1.5707963267948966
+      children [
+        DEF MOTOR Shape {
+          appearance MetalAppearance {
+          }
+          geometry Cylinder {
+            height 0.1164
+            radius 0.01875
+          }
+        }
+      ]
+      name "frontRightMotor"
+    }
+    DEF FRONT_LEFT_MOTOR Solid {
+      translation -0.007136 0.0794 0.03275
+      rotation -1 0 0 1.5707963267948966
+      children [
+        USE MOTOR
+      ]
+      name "frontLeftMotor"
+    }
+    DEF BACK_RIGHT_MOTOR Solid {
+      translation -0.051015 -0.0794 0.03275
+      rotation 1 0 0 1.5707963267948966
+      children [
+        USE MOTOR
+      ]
+      name "backRightMotor"
+    }
+    DEF BACK_LEFT_MOTOR Solid {
+      translation -0.051015 0.0794 0.03275
+      rotation -1 0 0 1.5707963267948966
+      children [
+        USE MOTOR
+      ]
+      name "backLeftMotor"
+    }
+    DEF FRONT_RIGHT_WHEEL InteriorWheel {
+      translation 0.127 -0.12 0.048
+      axis 0 1 0
+      anchor 0.127 -0.12 0.048
+      name "frontRightWheel"
+      sensorName "frontRightWheelSensor"
+    }
+    DEF FRONT_LEFT_WHEEL ExteriorWheel {
+      translation 0.127 0.12 0.048
+      axis 0 -1 0
+      anchor 0.127 0.12 0.048
+      name "frontLeftWheel"
+      sensorName "frontLeftWheelSensor"
+    }
+    DEF BACK_RIGHT_WHEEL ExteriorWheel {
+      translation -0.127 -0.12 0.048
+      axis 0 1 0
+      anchor -0.127 -0.12 0.048
+      name "backRightWheel"
+      sensorName "backRightWheelSensor"
+    }
+    DEF BACK_LEFT_WHEEL InteriorWheel {
+      translation -0.127 0.12 0.048
+      axis 0 -1 0
+      anchor -0.127 0.12 0.048
+      name "backLeftWheel"
+      sensorName "backLeftWheelSensor"
+    }
+  ]
+  description "Trident INTO THE DEEP"
+  boundingObject Group {
+    children [
+      DEF LEFT_RAIL Pose {
+        translation 0 0.125175 0.044
+        children [
+          DEF RAIL Box {
+            size 0.354 0.05835 0.068
+          }
+        ]
+      }
+      DEF RIGHT_RAIL Pose {
+        translation 0 -0.125175 0.044
+        children [
+          USE RAIL
+        ]
+      }
+      USE CROSSBAR
+      USE CROSSBAR1
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 4.14
+    centerOfMass [
+      0 0 0
+    ]
+    inertiaMatrix [
+      0.166204 0.418086 0.55459
+      0 0 0
+    ]
+  }
+  controller IS controller
+  controllerArgs IS controllerArgs
+  window IS window
+}
+}

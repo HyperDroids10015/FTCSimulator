@@ -1,0 +1,145 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/kuka/youbot/protos/Youbot.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/microsoft/protos/Kinect.proto"
+EXTERNPROTO "../protos/IntoTheDeepArena.proto"
+EXTERNPROTO "../protos/Sample.proto"
+EXTERNPROTO "../protos/Trident.proto"
+
+WorldInfo {
+  info [
+    "Simulation of the KUKA youBot robot in First Tech Challenge INTO THE DEEP arena."
+    "This model includes an accurate and fast simulation of the Meccanum wheels."
+    "The robot can be equiped with various sensors (including the SparkFun optical odometry sensor and Microsoft Kinect camera) and configured with zero, one or two arms."
+  ]
+  title "INTO THE DEEP"
+  contactProperties [
+    ContactProperties {
+      material1 "InteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation -0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+    }
+    ContactProperties {
+      material1 "ExteriorWheelMat"
+      coulombFriction [
+        0, 2, 0
+      ]
+      frictionRotation 0.785398 0
+      bounce 0
+      forceDependentSlip [
+        10, 0
+      ]
+    }
+    ContactProperties {
+      material1 "sample"
+      coulombFriction [
+        0.2
+      ]
+      bounce 0
+    }
+    ContactProperties {
+      material2 "specimen"
+      coulombFriction [
+        0.2
+      ]
+      bounce 0
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 -2.094395102393195
+  position 0 0 9
+}
+DirectionalLight {
+  direction 1 1 -2
+  intensity 3
+}
+DirectionalLight {
+  direction -1 -1 -2
+  intensity 3
+}
+IntoTheDeepArena {
+}
+Youbot {
+  translation -0.9 -1.511 0.1
+  rotation 0 0 1 1.570796326794897
+  controller "<none>"
+  window "telemetry"
+  bodySlot [
+    Kinect {
+      translation 0.27 0 -0.02
+      rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+      foot FALSE
+    }
+    GPS {
+    }
+    Compass {
+    }
+  ]
+}
+Trident {
+  translation 0 -1.612 0
+  rotation 0 0 1 1.570796326794897
+  controller "FTCController"
+  window "telemetry"
+}
+Sample {
+  translation 1.22255 -0.65095 0.01905
+  color 1 0 0
+  name "RedSample1"
+}
+Sample {
+  translation 1.47655 -0.65095 0.01905
+  color 1 0 0
+  name "RedSample2"
+}
+Sample {
+  translation 1.73055 -0.65095 0.01905
+  color 1 0 0
+  name "RedSample3"
+}
+Sample {
+  translation -1.22255 0.65095 0.01905
+  color 0 0 1
+  name "BlueSample1"
+}
+Sample {
+  translation -1.47655 0.65095 0.01905
+  color 0 0 1
+  name "BlueSample2"
+}
+Sample {
+  translation -1.73055 0.65095 0.01905
+  color 0 0 1
+  name "BlueSample3"
+}
+Sample {
+  translation -1.22255 -0.65095 0.01905
+  name "YellowSample1"
+}
+Sample {
+  translation -1.47655 -0.65095 0.01905
+  name "YellowSample2"
+}
+Sample {
+  translation -1.73055 -0.65095 0.01905
+  name "YellowSample3"
+}
+Sample {
+  translation 1.22255 0.65095 0.01905
+  name "YellowSample4"
+}
+Sample {
+  translation 1.47655 0.65095 0.01905
+  name "YellowSample5"
+}
+Sample {
+  translation 1.73055 0.65095 0.01905
+  name "YellowSample6"
+}

@@ -157,9 +157,9 @@ public class Base {
     double[] speeds = {0.0, 0.0, 0.0, 0.0};
     // -> first stimulus: delta_angle
     speeds[0] = -deltaAngle / Math.PI * K1;
-    speeds[1] = deltaAngle / Math.PI * K1;
+    speeds[1] =  deltaAngle / Math.PI * K1;
     speeds[2] = -deltaAngle / Math.PI * K1;
-    speeds[3] = deltaAngle / Math.PI * K1;
+    speeds[3] =  deltaAngle / Math.PI * K1;
     // -> second stimulus: x coord of the relative target vector
     speeds[0] += vTargetRel.x * K2;
     speeds[1] += vTargetRel.x * K2;
@@ -167,8 +167,8 @@ public class Base {
     speeds[3] += vTargetRel.x * K2;
     // -> third stimulus: y coord of the relative target vector
     speeds[0] += -vTargetRel.y * K3;
-    speeds[1] += -vTargetRel.y * K3;
-    speeds[2] += -vTargetRel.y * K3;
+    speeds[1] +=  vTargetRel.y * K3;
+    speeds[2] +=  vTargetRel.y * K3;
     speeds[3] += -vTargetRel.y * K3;
 
     // apply the speeds
@@ -176,7 +176,7 @@ public class Base {
       speeds[i] /= (K1 + K2 + K2);  // number of stimuli (-1 <= speeds <= 1)
       speeds[i] *= SPEED;           // map to speed (-SPEED <= speeds <= SPEED)
       // added an arbitrary factor increasing the convergence speed
-      speeds[i] *= 30.0;
+      speeds[i] *= 5.0;
       if (speeds[i] > SPEED) speeds[i] = SPEED;
       else if (speeds[i] < -SPEED) speeds[i] = -SPEED;
     }

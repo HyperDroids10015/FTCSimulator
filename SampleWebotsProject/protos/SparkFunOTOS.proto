@@ -1,0 +1,47 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# keywords: sensor/gps
+# SparkFun Optical Tracking Odometry Sensor - PAA5160E1 (Qwiic)
+# https://www.sparkfun.com/products/24904
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/geometries/protos/TexturedBox.proto"
+
+PROTO SparkFunOTOS [
+  field SFVec3f    translation   0 0 0
+  field SFRotation rotation      0 0 1 0
+  field SFString   name          "sensor_otos"
+]
+{
+Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+	Shape {
+	  appearance PBRAppearance {
+		metalness 0
+		roughness 0.5
+		baseColorMap ImageTexture {
+		  url [
+			"textures/sparkfunotos.jpg"
+		  ]
+		  repeatS FALSE
+		  repeatT FALSE
+		}
+	  }
+          geometry TexturedBox {
+            size 0.043 0.043 0.025
+            mapping "none"
+          }
+	}
+	InertialUnit {
+          xAxis FALSE
+          zAxis FALSE
+          rotation 0 0 1 -1.5707963267948966
+	}
+        GPS {
+        }
+  ]
+  name IS name
+}
+}

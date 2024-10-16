@@ -1,0 +1,60 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/devices/microsoft/protos/Kinect.proto
+# keywords: sensor/camera
+# Arducam 2.3MP AR0234 Color Global Shutter USB 3.0 Camera Module
+# https://www.arducam.com/product/arducam-2-3mp-ar0234-color-global-shutter-usb-3-0-camera-module/
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/geometries/protos/TexturedBox.proto"
+
+PROTO Arducam [
+  field SFVec3f    translation   0 0 0
+  field SFRotation rotation      0 0 1 0
+  field SFString   name          "Webcam 1"
+  field SFFloat    fieldOfView   1.658062789394613   # 95 degree [0, pi]
+  field SFInt32    width         960          # Defines the `width` field of the `Camera` node.
+  field SFInt32    height        600          # Defines the `height` field of the `Camera` node.
+  field SFFloat    colorNoise    0.0          # Defines the `noise` field of the `Camera` node.
+  field SFNode     recognition   NULL         # Defines the `recognition` field of the camera node to recognize objects in its image. [Recognition {}]
+]
+{
+Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+	Shape {
+	  appearance PBRAppearance {
+		metalness 0
+		roughness 0.1
+		baseColorMap ImageTexture {
+		  url [
+			"textures/arducam.jpg"
+		  ]
+		  repeatS FALSE
+		  repeatT FALSE
+		}
+	  }
+      geometry TexturedBox {
+        size 0.02 0.034 0.034
+      }
+	}
+	Camera {
+	  name IS name
+	  fieldOfView IS fieldOfView
+	  width IS width
+	  height IS height
+	  noise IS colorNoise
+	  recognition IS recognition
+	}
+  ]
+  boundingObject Box {
+	size 0.02 0.034 0.034
+  }
+  physics Physics {
+	density -1
+	mass 0.1
+  }
+  name "arducam"
+}
+}

@@ -1,0 +1,45 @@
+#VRML_SIM R2023b utf8
+# Describe the functionality of your PROTO here.
+
+
+PROTO Sample [
+  field SFVec3f translation 0 0 0
+  field SFRotation rotation 0 0 1 1.5707963267948966
+  field SFColor color 1 1 0
+  field SFString name "Sample"
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    children [
+      DEF SAMPLE Shape {
+        appearance PBRAppearance {
+          baseColor IS color
+          roughness 1
+          metalness 0
+        }
+        geometry Box {
+          size 0.0889 0.0381 0.0381
+        }
+      }
+    ]
+    contactMaterial "Sample"
+    boundingObject USE SAMPLE
+    physics Physics {
+      density -1
+      mass 0.2
+      centerOfMass [
+        0 0 0
+      ]
+      inertiaMatrix [
+        1 1 1
+        0 0 0
+      ]
+    }
+  recognitionColors [
+    1 1 0
+  ]
+  }
+}

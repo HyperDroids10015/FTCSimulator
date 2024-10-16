@@ -1,0 +1,11 @@
+import org.ftc6448.simulator.PlatformSupport;
+import com.cyberbotics.webots.controller.Supervisor;
+import com.cyberbotics.webots.controller.Node;
+import com.cyberbotics.webots.controller.Field;
+Supervisor supervisor = PlatformSupport.supervisor;
+Node node = supervisor.getFromId(objId);
+Field field = node.getField("translation");
+double[] translation = field.getSFVec3f();
+double[] rotation = field.getSFRotation();
+							System.out.printf("Actual position: %f %f %f\n",translation[0],translation[1],translation[2]);
+							System.out.printf("Actual orientation: %f %f %f %f\n",rotation[0],rotation[1],rotation[2],rotation[3]);

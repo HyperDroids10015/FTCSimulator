@@ -9,6 +9,7 @@ EXTERNPROTO "SubWheelMesh.proto"
 
 PROTO InteriorWheel [
   field SFVec3f translation 0 0 0
+  field SFVec3f axis 0 1 0
   field SFVec3f anchor 0 0 0
   field SFString name "wheel"
   field SFString sensorName "wheel_sensor"
@@ -25,7 +26,7 @@ PROTO InteriorWheel [
       }
     ]
     jointParameters HingeJointParameters {
-      axis 0 1 0
+      axis IS axis
       anchor IS anchor
     }
     endPoint DEF WHEEL_SOLID Solid {

@@ -19,12 +19,6 @@ import java.util.regex.Pattern
 
 apply plugin: 'com.android.application'
 
-// installing FTCLib
-// https://docs.ftclib.org/ftclib/installation
-repositories {
-    mavenCentral()
-}
-
 android {
 
     compileSdkVersion 29
@@ -58,6 +52,10 @@ android {
         applicationId 'com.qualcomm.ftcrobotcontroller'
         minSdkVersion 24
         //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 28
+
+
+        // from FTCLib installation instructions
         targetSdkVersion 28
         multiDexEnabled true
 
@@ -96,14 +94,14 @@ android {
             signingConfig signingConfigs.release
 
             ndk {
-                abiFilters "armeabi-v7a" //, "arm64-v8a"
+                abiFilters "armeabi-v7a"
             }
         }
         debug {
             debuggable true
             jniDebuggable true
             ndk {
-                abiFilters "armeabi-v7a" //, "arm64-v8a"
+                abiFilters "armeabi-v7a"
             }
         }
     }

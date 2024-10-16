@@ -1,67 +1,84 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.teamcode.robot.Kuka;
-import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.kuka.Arm;
+import org.firstinspires.ftc.teamcode.kuka.Drive;
+import org.firstinspires.ftc.teamcode.kuka.Gripper;
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 
 import org.ftc6448.simulator.PlatformSupport;
 
 @Autonomous(name = "Autonomous", group = "Kuka")
-public class KukaAutonomous extends LinearOpMode {
+@Disabled
+public class KukaAutonomous extends OpMode {
 
-    // Create a RobotHardware object to be used to access robot hardware.
-    // Prefix any hardware functions with "kuka." to access this class.
-    Kuka kuka = new Kuka(this);
+    // Define robot hardware objects  (Make them private so they can't be accessed externally)
+    private Drive drive;
+    private Arm arm;
+    private Gripper gripper;
+    private WebcamName camera;
+    //private DistanceSensor range;
 
-    protected final ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
 
-    @Override
-    public void runOpMode() {
+    private final SparkFunOTOS.Pose2D[] targets = {
+            new SparkFunOTOS.Pose2D(0, -0.9, 0),
+            new SparkFunOTOS.Pose2D(0.8, -1.4, -135),
+            new SparkFunOTOS.Pose2D(0, -0.9, 0),
+            new SparkFunOTOS.Pose2D(0.9, -1, -90),
+            new SparkFunOTOS.Pose2D(0.9, 0, -90),
+            new SparkFunOTOS.Pose2D(1.22, -0.33, -180),
+            new SparkFunOTOS.Pose2D(1.22, -1.2, -180),
+            new SparkFunOTOS.Pose2D(1.22, -0.2, -180),
+            new SparkFunOTOS.Pose2D(1.48, -0.33, -180),
+            new SparkFunOTOS.Pose2D(1.48, -1.2, -180),
+            new SparkFunOTOS.Pose2D(1.48, -0.2, -180),
+            new SparkFunOTOS.Pose2D(1.6, -0.33, -180),
+            new SparkFunOTOS.Pose2D(1.6, -1.2, -180),
+    };
+    int currentTarget = 0;
 
-        // initialize all the hardware, using the hardware class. See how clean and simple this is?
-        kuka.init();
+    @Override public void init() {
 
-        // set starting position
-        kuka.setBasePosition(new SparkFunOTOS.Pose2D(-1.5, 0.3, -90));
+        // Initialize robot hardware objects (note: need to use reference to actual OpMode).
+        drive = new Drive(hardwareMap);
+        arm = new Arm(hardwareMap);
+        gripper = new Gripper(hardwareMap);
+        camera = hardwareMap.get(WebcamName.class, "Webcam 1");
+        telemetry.addData(">", "Hardware Initialized");
+        telemetry.update();
 
-        // Send telemetry message to signify robot waiting;
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-        runtime.reset();
-
-        SparkFunOTOS.Pose2D[] targets = {
-                new SparkFunOTOS.Pose2D(0.0, 1.2, 0.0),
-//                new SparkFunOTOS.Pose2D(0.9, 0.3, 90.0),
-//                new SparkFunOTOS.Pose2D(0.0, 0.3, 180.0),
-//                new SparkFunOTOS.Pose2D(-1.5, 0.3, -90.0),
-        };
-        int currentTarget = 0;
-
-        while (opModeIsActive()) {
-            if (kuka.targetReached()) {
-                if (currentTarget < targets.length) {
-                    kuka.setTarget(targets[currentTarget]);
-                    currentTarget++;
-                } //else
-//                    currentTarget = 0;
-            } else {
-                kuka.runToTarget();
-
-                SparkFunOTOS.Pose2D pos = kuka.getPosition();
-
-                // Send telemetry messages to show robot status
-                // to see telemetry in Webots, right click on your robot and select "Show Robot Window"
-                telemetry.addData("Robot Position", "x = %4.2f, y = %4.2f, h = %4.2f", pos.x, pos.y, pos.h);
-                telemetry.addData("Elapsed time", runtime.toString());
-                telemetry.update();
-            }
-
-            //on the real robot, this method call does nothing
-            //on the simulator, it forces the opmode to sync its loop to Webots simulator time steps
-            PlatformSupport.waitForSimulatorTimeStep();
-        }
     }
+
+    @Override public void start() {
+        // set starting position
+        drive.setPosition(new SparkFunOTOS.Pose2D(0, -1.511, 0));
+        runtime.reset();
+    }
+
+    @Override public void loop() {
+        if (drive.targetReached(targets[currentTarget])) {
+            drive.stop();
+            currentTarget++;
+            if (currentTarget == targets.length)
+                currentTarget = 0;
+        } else
+            drive.loop();
+
+        // Send telemetry messages to show robot status
+        // to see telemetry in Webots, right click on your robot and select "Show Robot Window"
+        telemetry.addData("Elapsed time", runtime.toString());
+        telemetry.update();
+    }
+
+    @Override public void stop() {
+        drive.stop();
+        arm.resetPosition();
+    }
+
 }

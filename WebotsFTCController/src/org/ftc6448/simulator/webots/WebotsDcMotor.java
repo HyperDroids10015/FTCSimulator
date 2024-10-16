@@ -186,7 +186,8 @@ public class WebotsDcMotor implements DcMotorEx{
 
 	@Override
 	public void setVelocity(double angularRate) {
-		motor.setVelocity(angularRate);
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override

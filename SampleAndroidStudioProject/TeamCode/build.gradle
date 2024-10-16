@@ -26,4 +26,7 @@ android {
 dependencies {
     implementation project(':FtcRobotController')
     implementation files('lib/SimulatorSupport.jar')
+    // from FTCLib installation
+    implementation 'org.ftclib.ftclib:core:2.1.1' // core
+    implementation 'org.ftclib.ftclib:vision:2.1.0' // vision
 }

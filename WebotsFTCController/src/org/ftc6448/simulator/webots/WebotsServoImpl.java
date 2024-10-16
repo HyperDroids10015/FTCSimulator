@@ -6,6 +6,7 @@ import com.cyberbotics.webots.controller.Motor;
 import com.cyberbotics.webots.controller.PositionSensor;
 import com.github.javaparser.Position;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoController;
 
 public class WebotsServoImpl implements Servo {
 	protected final String name;
@@ -89,6 +90,18 @@ public class WebotsServoImpl implements Servo {
 
 	public void setBaseRotation(float rotRads) {
 		this.baseRotation=rotRads;
+	}
+
+//	@Override
+	public int getPortNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+//	@Override
+	public ServoController getController() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,0 +1,61 @@
+<project name="FTCController" basedir="." default="install">
+
+    <description>
+        Creates a Webots Controller Jar
+    </description>
+
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib" />
+    <property environment="my_env" />
+    <property name="webots.dir" location="${my_env.WEBOTS_HOME}/lib/controller/java" />
+    <property name="kotlin.lib" location="C:/Program Files/Android/Android Studio/plugins/Kotlin/kotlinc/lib" />
+    <path id="classpath">
+        <fileset dir="${webots.dir}" includes="Controller.jar"/>
+        <fileset dir="${lib.dir}" includes="RobotCore-10.1.0.jar"/>
+        <fileset dir="${lib.dir}" includes="Jamepad-1.3.2.jar"/>
+        <fileset dir="${lib.dir}" includes="EOCV-Sim-3.7.1-all.jar"/>
+        <fileset dir="${lib.dir}" includes="Hardware-10.1.0.jar"/>
+    </path>
+    <property name="build.dir" location="build" />
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <property name="jar.dir" location="${build.dir}/jar"/>
+    <typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath">
+<!--            <compilerarg line="-Xlint:deprecation -Xlint:unchecked"/>-->
+            <withKotlin/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile" >
+	<mkdir dir="${jar.dir}" />
+	<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${ant.project.name}"/>
+            </manifest>
+            <zipfileset dir="." includes="telemetry.html" />
+        </jar>
+
+    </target>
+
+    <target name="run" depends="jar">
+        <java fork="true" classname="ColorConversionTest">
+            <sysproperty key="java.library.path" path="${webots.dir};${lib.dir}/EOCV-Sim-3.7.0-all.jar"/>
+            <classpath>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+                <path refid="classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="install" depends="clean,jar" >
+        <copy file="${jar.dir}/${ant.project.name}.jar" todir="../SampleWebotsProject/controllers/FTCController" />
+    </target>
+
+</project>

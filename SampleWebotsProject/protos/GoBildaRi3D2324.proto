@@ -1,0 +1,148 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/HyperDroids10015/FTCSimulator/main/WebotsProjects/CENTERSTAGE/protos/GoBildaRi3D2324.proto
+# keywords: robot/wheeled
+# This is the goBILDA Robot-in-3-Days robot for the FTC CENTERSTAGE season by the FTC team 7842 Browncats.
+# It consists of an omnidirectional platform, a linear stage robot arm and a two-finger gripper.
+# template language: javascript
+
+EXTERNPROTO "InteriorWheel.proto"
+EXTERNPROTO "ExteriorWheel.proto"
+
+PROTO GoBildaRi3D2324 [
+  field SFVec3f           translation     0 0 0.072     # Is `Pose.translation`.
+  field SFRotation        rotation        0 0 1 0       # Is `Pose.rotation`.
+  field SFString          name            "GoBildaRi3D2324"      # Is `Solid.name`.
+  field SFString          controller      "<generic>"   # Is `Robot.controller`.
+  field MFString          controllerArgs  []            # Is `Robot.controllerArgs`.
+  field SFString          window          "centerstage"   # Is `Robot.window`.
+  field SFString          customData      ""            # Is `Robot.customData`.
+  field SFBool            supervisor      FALSE         # Is `Robot.supervisor`.
+  field SFBool            synchronization TRUE          # Is `Robot.synchronization`.
+  field MFNode            bodySlot        []            # Extends the robot with new nodes in the body slot.
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  customData IS customData
+  supervisor IS supervisor
+  synchronization IS synchronization
+  name IS name
+  model "goBILDA Robot-in-3-Days CENTERSTAGE"
+  children [
+    Group {
+      children IS bodySlot
+    }
+    DEF CHASSIS Solid {
+      children [
+        DEF RIGHT_RAIL Pose {
+          translation 0 -0.108 -0.024
+          children [
+            DEF _1120-0014-0360 Shape {
+              appearance PBRAppearance {
+                metalness 0.5
+              }
+              geometry Box {
+                size 0.36 0.048 0.048
+              }
+            }
+          ]
+        }
+        DEF LEFT_RAIL Pose {
+          translation 0 0.108 -0.024
+          children [
+            USE _1120-0014-0360
+          ]
+        }
+        DEF RIGHT_CROSSBAR Pose {
+          translation 0.132 -0.108 0.072
+          children [
+            DEF _1120-0005-0144 Shape {
+              appearance PBRAppearance {
+                metalness 0.5
+              }
+              geometry Box {
+                size 0.048 0.048 0.144
+              }
+            }
+          ]
+        }
+        DEF LEFT_CROSSBAR Pose {
+          translation 0.132 0.108 0.072
+          children [
+            USE _1120-0005-0144
+          ]
+        }
+        DEF CROSSBAR Pose {
+          translation 0.132 0 0.120
+          children [
+            DEF _1120-0006-0168 Shape {
+              appearance PBRAppearance {
+                metalness 0.5
+              }
+              geometry Box {
+                size 0.048 0.168 0.048
+              }
+            }
+          ]
+        }
+    
+      ]
+    }
+    DEF FRONT_RIGHT_WHEEL InteriorWheel {
+      translation 0.132 -0.153 -0.024
+      axis 0 -1 0
+      anchor 0.132 -0.153 -0.024
+      name "frontRightWheel"
+      sensorName "frontRightWheelSensor"
+    }
+    DEF FRONT_LEFT_WHEEL ExteriorWheel {
+      translation 0.132 0.153 -0.024
+      axis 0 1 0
+      anchor 0.132 0.153 -0.024
+      name "frontLeftWheel"
+      sensorName "frontLeftWheelSensor"
+    }
+    DEF BACK_RIGHT_WHEEL ExteriorWheel {
+      translation -0.132 -0.153 -0.024
+      axis 0 -1 0
+      anchor -0.132 -0.153 -0.024
+      name "backRightWheel"
+      sensorName "backRightWheelSensor"
+    }
+    DEF BACK_LEFT_WHEEL InteriorWheel {
+      translation -0.132 0.153 -0.024
+      axis 0 1 0
+      anchor -0.132 0.153 -0.024
+      name "backLeftWheel"
+      sensorName "backLeftWheelSensor"
+    }
+  ]
+  description "goBILDA Robot-in-3-Days CENTERSTAGE"
+  boundingObject Group {
+    children [
+      USE RIGHT_RAIL
+      USE LEFT_RAIL
+      USE RIGHT_CROSSBAR
+      USE LEFT_CROSSBAR
+      USE CROSSBAR
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 4.14
+    centerOfMass [
+      0 0 0
+    ]
+    inertiaMatrix [
+      0.166204 0.418086 0.55459
+      0 0 0
+    ]
+  }
+  controller IS controller
+  controllerArgs IS controllerArgs
+  window IS window
+}
+}

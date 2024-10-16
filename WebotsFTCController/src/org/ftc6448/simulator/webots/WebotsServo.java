@@ -1,6 +1,7 @@
 package org.ftc6448.simulator.webots;
 
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoController;
 
 /**
  * Empty servo implementation.
@@ -71,6 +72,18 @@ public class WebotsServo implements Servo{
 	public void scaleRange(double min, double max) {
 		// TODO Auto-generated method stub
 		
+	}
+
+//	@Override
+	public int getPortNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+//	@Override
+	public ServoController getController() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

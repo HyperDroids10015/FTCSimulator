@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import org.openftc.easyopencv.OpenCvPipeline;
 
 import org.opencv.calib3d.Calib3d;
@@ -18,7 +20,7 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
-
+@Disabled
 public class SampleDetectionPipelinePNP extends OpenCvPipeline
 {
     /*
@@ -101,10 +103,10 @@ public class SampleDetectionPipelinePNP extends OpenCvPipeline
         // Replace these values with your actual camera calibration parameters
 
         // Focal lengths (fx, fy) and principal point (cx, cy)
-        double fx = 800; // Replace with your camera's focal length in pixels
-        double fy = 800;
-        double cx = 320; // Replace with your camera's principal point x-coordinate (usually image width / 2)
-        double cy = 240; // Replace with your camera's principal point y-coordinate (usually image height / 2)
+        double fx = 456.592326717; // Replace with your camera's focal length in pixels
+        double fy = 456.592326717;
+        double cx = 516.102887247; // Replace with your camera's principal point x-coordinate (usually image width / 2)
+        double cy = 288.749683519; // Replace with your camera's principal point y-coordinate (usually image height / 2)
 
         cameraMatrix.put(0, 0,
                 fx, 0, cx,

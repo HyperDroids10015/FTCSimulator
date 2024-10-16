@@ -15,6 +15,8 @@ import org.ftc6448.simulator.webots.OpModeController;
 import com.cyberbotics.webots.controller.Supervisor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import nu.pattern.OpenCV;
+
 /**
  * This controller is a bootstrap to load properties and required JAR files and
  * then call into the correct Webots controller class. This is needed because
@@ -23,6 +25,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * 
  */
 public class FTCController {
+
+	static{ OpenCV.loadLocally(); }
+
 	public static void main(String[] args) {
 		FTCController controller = new FTCController();
 		try {

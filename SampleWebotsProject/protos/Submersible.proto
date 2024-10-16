@@ -1,0 +1,160 @@
+#VRML_SIM R2023b utf8
+# SUBMERSIBLE
+# keywords: vehicle/other
+
+EXTERNPROTO "MetalAppearance.proto"
+
+PROTO Submersible [
+  field SFVec3f translation 0 0 0
+  field SFRotation rotation 0 0 1 0
+  field SFColor color 1 1 1
+  field SFString name "Submersible Side"
+]
+{
+  Solid {
+    children [
+      DEF REEF_LEFT Solid {
+        translation -0.3556 0.5842 0.4572
+        children [
+          DEF REEF Shape {
+            appearance MetalAppearance {
+            }
+            geometry Box {
+              size 0.0381 0.0381 0.9144
+            }
+          }
+        ]
+        name "am-5419 Center Structure Upright 1"
+        boundingObject USE REEF
+      }
+      DEF REEF_LEFT_OUTRIGGER Solid {
+        translation -0.4735 0.5842 0.2165
+        rotation 0 1 0 0.5235987755983
+        children [
+          DEF OUTRIGGER Shape {
+            appearance MetalAppearance {
+            }
+            geometry Box {
+              size 0.035052 0.04445 0.5
+            }
+          }
+        ]
+        name "am-5416 Submersible Outrigger Left"
+        boundingObject USE OUTRIGGER
+      }
+      DEF REEF_RIGHT Solid {
+        translation -0.3556 -0.5842 0.4572
+        children [
+          USE REEF
+        ]
+        name "am-5419 Center Structure Upright 2"
+        boundingObject USE REEF
+      }
+      DEF REEF_RIGHT_OUTRIGGER Solid {
+        translation -0.4735 -0.5842 0.2165
+        rotation 0 1 0 0.5235987755983
+        children [
+          USE OUTRIGGER
+        ]
+        name "am-5415 Submersible Outrigger Right"
+        boundingObject USE OUTRIGGER
+      }
+      DEF LOW_RUNG Solid {
+        translation -0.36 0 0.4953
+        rotation 1 0 0 1.5707963267948966
+        children [
+          DEF RUNG Shape {
+            appearance MetalAppearance {
+            }
+            geometry Cylinder {
+              height 1.1303
+              radius 0.0127
+            }
+          }
+        ]
+        name "am-5420 Daisy Round Extrusion 1"
+        boundingObject USE RUNG
+      }
+      DEF HIGH_RUNG Solid {
+        translation -0.36 0 0.9017
+        rotation 1 0 0 1.5707963267948966
+        children [
+          USE RUNG
+        ]
+        name "am-5420 Daisy Round Extrusion 2"
+        boundingObject USE RUNG
+      }
+      DEF BARRIER1 Solid {
+        translation -0.36 0 0.0381
+        rotation 0 0 1 0
+        children [
+          DEF BARRIER Shape {
+            appearance MetalAppearance {
+            }
+            geometry Box {
+              size 0.0254 1.1303 0.0254
+            }
+          }
+        ]
+        name "am-5412 Structural Extrusion"
+        boundingObject USE BARRIER
+      }
+      DEF BOTTOM_BRACE Solid {
+        translation 0 -0.5635815 0.0381
+        rotation 0 0 1 0
+        children [
+          DEF BRACE Shape {
+            appearance MetalAppearance {
+            }
+            geometry Box {
+              size 0.7493 0.003175 0.0508
+            }
+          }
+        ]
+        name "am-5418 Submersible Bottom Brace"
+        boundingObject USE BRACE
+      }
+      DEF TOP_BRACE Solid {
+        translation 0 -0.5635815 0.8636
+        rotation 0 0 1 0
+        children [
+          USE BRACE
+        ]
+        name "am-5417 Submersible Top Brace"
+        boundingObject USE BRACE
+      }
+      DEF LOW_CHAMBER Solid {
+        translation 0 -0.587566 0.316865
+        rotation 0 1 0 1.5707963267948966
+        children [
+          DEF PIPE Shape {
+            appearance PBRAppearance {
+              baseColor IS color
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.6731
+              radius 0.013335
+            }
+          }
+        ]
+        name "am-5421 High Impact Polystyrene (HIPS) Pipe 1"
+        boundingObject USE PIPE
+      }
+      DEF HIGH_CHAMBER Solid {
+        translation 0 -0.587566 0.647065
+        rotation 0 1 0 1.5707963267948966
+        children [
+          USE PIPE
+        ]
+        name "am-5421 High Impact Polystyrene (HIPS) Pipe 2"
+        boundingObject USE PIPE
+      }
+    ]
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    locked TRUE
+  }
+}

@@ -1,0 +1,177 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/HyperDroids10015/FTCSimulator/main/SampleWebotsProject/protos/IntoTheDeepArena.proto
+# keywords: robot/wheeled
+# This is the arena for the FTC CENTERSTAGE season
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "Submersible.proto"
+
+PROTO IntoTheDeepArena [
+]
+{
+  Group {
+    children [
+      RectangleArena {
+        floorSize 3.58 3.58
+        floorTileSize 3.58 3.58
+        floorAppearance PBRAppearance {
+          baseColor 0.5 0.5 0.5
+          baseColorMap ImageTexture {
+            url [
+              "textures/IntoTheDeepArena.png"
+            ]
+            repeatS FALSE
+            repeatT FALSE
+          }
+          roughness 1
+          metalness 0
+        }
+        wallThickness 0.0267
+        wallHeight 0.3
+        wallAppearance PBRAppearance {
+          transparency 0.9
+          roughness 1
+          metalness 0
+        }
+      }
+      Submersible {
+        rotation 0 0 1 0
+        color 1 0 0
+        name "Red Submersible Side"
+      }
+      Submersible {
+        rotation 0 0 1 3.1415926535897932
+        color 0 0 1
+        name "Blue Submersible Side"
+      }
+      Solid {
+        translation -1.79 1.19 0.14572
+        rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395102393195
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag11.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag11"
+      }
+      Solid {
+        translation 0 1.79 0.14572
+        rotation 1 0 0 1.570796326794897
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag12.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag12"
+      }
+      Solid {
+        translation 1.79 1.19 0.14572
+        rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395102393195
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag13.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag13"
+      }
+      Solid {
+        translation 1.79 -1.19 0.14572
+        rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395102393195
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag14.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag14"
+      }
+      Solid {
+        translation 0 -1.79 0.14572
+        rotation 0 0.7071067811865475 0.7071067811865475 3.141592653589793
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag15.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag15"
+      }
+      Solid {
+        translation -1.79 -1.19 0.14572
+        rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395102393195
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "textures/apriltag16.png"
+                ]
+              }
+              roughness 1
+              metalness 0
+            }
+            geometry Plane {
+              size 0.127 0.127
+            }
+          }
+        ]
+        name "apriltag16"
+      }
+    ]
+  }
+}
